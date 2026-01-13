@@ -1,0 +1,70 @@
+#! /data/data/com.termux/files/usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/data/data/com.termux/files/usr/lib/ivl/system.vpi";
+:vpi_module "/data/data/com.termux/files/usr/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/data/data/com.termux/files/usr/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/data/data/com.termux/files/usr/lib/ivl/v2005_math.vpi";
+:vpi_module "/data/data/com.termux/files/usr/lib/ivl/va_math.vpi";
+S_0xb40000754728be10 .scope module, "comparator_1bit_tb" "comparator_1bit_tb" 2 1;
+ .timescale 0 0;
+v0xb4000075f7287cf0_0 .var "A", 0 0;
+v0xb4000075f7288110_0 .net "A_eq_B", 0 0, L_0xb4000075d728a840;  1 drivers
+v0xb4000075f7286010_0 .net "A_gt_B", 0 0, L_0xb4000075d72897f0;  1 drivers
+v0xb4000075f7286170_0 .net "A_lt_B", 0 0, L_0xb4000075d728a210;  1 drivers
+v0xb4000075f72872a0_0 .var "B", 0 0;
+S_0xb40000754728dd90 .scope module, "dut" "Comparator1Bit" 2 6, 3 1 0, S_0xb40000754728be10;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /OUTPUT 1 "A_gt_B";
+    .port_info 3 /OUTPUT 1 "A_eq_B";
+    .port_info 4 /OUTPUT 1 "A_lt_B";
+L_0xb4000075d7289e20 .functor NOT 1, v0xb4000075f72872a0_0, C4<0>, C4<0>, C4<0>;
+L_0xb4000075d72897f0 .functor AND 1, v0xb4000075f7287cf0_0, L_0xb4000075d7289e20, C4<1>, C4<1>;
+L_0xb4000075d7289520 .functor XOR 1, v0xb4000075f7287cf0_0, v0xb4000075f72872a0_0, C4<0>, C4<0>;
+L_0xb4000075d728a840 .functor NOT 1, L_0xb4000075d7289520, C4<0>, C4<0>, C4<0>;
+L_0xb4000075d728a060 .functor NOT 1, v0xb4000075f7287cf0_0, C4<0>, C4<0>, C4<0>;
+L_0xb4000075d728a210 .functor AND 1, L_0xb4000075d728a060, v0xb4000075f72872a0_0, C4<1>, C4<1>;
+v0xb4000075f72881c0_0 .net "A", 0 0, v0xb4000075f7287cf0_0;  1 drivers
+v0xb4000075f7288320_0 .net "A_eq_B", 0 0, L_0xb4000075d728a840;  alias, 1 drivers
+v0xb4000075f7286b10_0 .net "A_gt_B", 0 0, L_0xb4000075d72897f0;  alias, 1 drivers
+v0xb4000075f7287c40_0 .net "A_lt_B", 0 0, L_0xb4000075d728a210;  alias, 1 drivers
+v0xb4000075f72869b0_0 .net "B", 0 0, v0xb4000075f72872a0_0;  1 drivers
+v0xb4000075f7287770_0 .net *"_ivl_0", 0 0, L_0xb4000075d7289e20;  1 drivers
+v0xb4000075f72878d0_0 .net *"_ivl_4", 0 0, L_0xb4000075d7289520;  1 drivers
+v0xb4000075f7286d20_0 .net *"_ivl_8", 0 0, L_0xb4000075d728a060;  1 drivers
+    .scope S_0xb40000754728be10;
+T_0 ;
+    %vpi_call 2 15 "$dumpfile", "comparator_1bit_test.vcd" {0 0 0};
+    %vpi_call 2 16 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xb40000754728be10 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0xb4000075f7287cf0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0xb4000075f72872a0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0xb4000075f7287cf0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0xb4000075f72872a0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0xb4000075f7287cf0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0xb4000075f72872a0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0xb4000075f7287cf0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0xb4000075f72872a0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 23 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "comparator_1bit_tb.v";
+    "comparator_1bit.v";
